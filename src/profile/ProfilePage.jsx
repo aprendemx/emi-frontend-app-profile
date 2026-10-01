@@ -37,6 +37,8 @@ import UserCertificateSummary from './UserCertificateSummary';
 import PageLoading from './PageLoading';
 import Certificates from './Certificates';
 import ProfileDashboard from './ProfileDashboard';
+import Banner from './Banner';
+import AgeMessage from './AgeMessage';
 
 import { profilePageSelector } from './data/selectors';
 import messages from './ProfilePage.messages';
@@ -73,6 +75,7 @@ const ProfilePage = ({ params }) => {
     visibilityBio,
     saveState,
     username,
+    requiresParentalConsent,
   } = useSelector(profilePageSelector);
 
   const navigate = useNavigate();
@@ -181,6 +184,7 @@ const ProfilePage = ({ params }) => {
         <PageLoading srMessage={intl.formatMessage(messages['profile.loading'])} />
       ) : (
         <>
+          <Banner />
           <ProfileDashboard
             username={username}
             dateJoined={dateJoined}
@@ -239,16 +243,11 @@ const ProfilePage = ({ params }) => {
                       </div>
                     </div>
                   </div>
-                </div>
-              )}
-              {isBlockVisible(bio) && (
-                <div className="bio-container">
-                  <Bio
-                    bio={bio}
-                    visibilityBio={visibilityBio}
-                    formId="bio"
-                    {...commonFormProps}
-                  />
+                    {requiresParentalConsent && isAuthenticatedUserProfile() && (
+                    <div className="age-message-container">
+                      <AgeMessage accountSettingsUrl={context.config.ACCOUNT_SETTINGS_URL} />
+                    </div>
+                    )}
                 </div>
               )}
             </div>
