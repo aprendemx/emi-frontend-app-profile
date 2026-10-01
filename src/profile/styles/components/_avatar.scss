@@ -1,0 +1,113 @@
+// ==============================================
+// PROFILE AVATAR - Avatar del usuario con controles de edición
+// ==============================================
+
+.profile-page {
+  // Ocultar la sección original del avatar ya que usamos el dashboard
+  .row .col-auto.col-md-4.col-lg-3:first-child {
+    display: none !important;
+  }
+  
+  // Ajustar el layout para compensar la columna oculta
+  .row .col {
+    flex: 1 1 100% !important;
+    max-width: 100% !important;
+  }
+  
+  // Ocultar el heading lockup duplicado en mobile y desktop
+  .row .col .d-md-none h1,
+  .row .col-md-4 .d-none.d-md-block h1 {
+    display: none !important;
+  }
+  
+  // Ajustar la estructura de las columnas principales
+  .container-fluid > .row:last-child {
+    .col-md-4.col-lg-4 {
+      @include media-breakpoint-up(md) {
+        flex: 0 0 33.33333%;
+        max-width: 33.33333%;
+      }
+      @include media-breakpoint-up(lg) {
+        flex: 0 0 25%;
+        max-width: 25%;
+      }
+    }
+    
+    .col-md-8.col-lg-7.offset-lg-1 {
+      @include media-breakpoint-up(md) {
+        flex: 0 0 66.66667%;
+        max-width: 66.66667%;
+        margin-left: 0 !important;
+      }
+      @include media-breakpoint-up(lg) {
+        flex: 0 0 75%;
+        max-width: 75%;
+        margin-left: 0 !important;
+      }
+    }
+  }
+  
+  .profile-avatar-wrap {
+    @include media-breakpoint-up(md) {
+      max-width: 12rem;
+      margin-right: 0;
+      margin-top: -8rem;
+      margin-bottom: 2rem;
+    }
+    
+    // ELIMINAR TODOS LOS ESTILOS DECORATIVOS
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    background: transparent !important;
+    padding: 0 !important;
+    
+    // Eliminar cualquier decoración que venga de Paragon
+    &::before, &::after {
+      display: none !important;
+      content: none !important;
+    }
+  }
+
+  // ELIMINAR COMPLETAMENTE EL MENU CONTAINER QUE CAUSA EL CÍRCULO
+  .profile-avatar-menu-container {
+    display: none !important; // Ocultar completamente
+  }
+
+  .profile-avatar {
+    width: 5rem;
+    height: 5rem;
+    position: relative;
+    border-radius: 50%;
+    overflow: hidden;
+    
+    // ELIMINAR FONDOS Y BORDES
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+
+    @include media-breakpoint-up(md) {
+      width: 12rem;
+      height: 12rem;
+    }
+    
+    // Imagen limpia sin decoraciones
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+      border: none !important;
+    }
+    
+    // Ocultar SVG por completo
+    svg {
+      display: none !important;
+    }
+
+    // Eliminar botón de edición si causa problemas visuales
+    .profile-avatar-edit-button {
+      display: none !important;
+    }
+  }
+}

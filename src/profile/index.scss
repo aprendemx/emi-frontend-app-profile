@@ -1,6 +1,6 @@
-.word-break-all {
-  word-break: break-all !important;
-}
+// ==============================================
+// PROFILE STYLES - Importar estructura modular
+// ==============================================
 
 // TODO: Update edx-bootstrap theme to incorporate these edits.
 .btn, a.btn {
@@ -259,3 +259,4 @@
 .overflowWrap-breakWord {
   overflow-wrap: break-word;
 }
+@import './styles/index';

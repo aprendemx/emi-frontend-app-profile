@@ -1,0 +1,406 @@
+// ==============================================
+// PROFILE STYLES - Estilos principales del perfil
+// ==============================================
+// Estructura modular de estilos organizados por componente
+
+// Variables EMI (importar primero)
+@import './variables';
+
+// Base styles
+@import './base';
+@import './buttons';
+
+// Components
+@import './components/banner';
+@import './components/avatar';
+@import './components/username-description';
+@import './components/forms';
+@import './components/certificates';
+@import './components/age-message';
+@import './components/dashboard';
+
+// Nuclear overrides (debe ir al final)
+@import './nuclear-overrides';
+
+// ==============================================
+// PROFILE PAGE WRAPPER - Contenedor principal
+// ==============================================
+
+// ==============================================
+// PROFILE PAGE WRAPPER - Contenedor principal
+// ==============================================
+
+.profile-page {
+  // Contenedor principal del perfil
+  // Los estilos específicos de cada componente están
+  // organizados en sus archivos correspondientes
+  
+  // OVERRIDE PARA EL CONTENEDOR PRINCIPAL - SIN ESTILOS
+  .profile-main-content {
+    border: none !important;
+    background: none !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    padding: 0 !important;
+    margin: 0 auto !important;
+    
+    &::before,
+    &::after {
+      display: none !important;
+    }
+  }
+  
+  // Estilizar todas las secciones principales con contenedores verdes
+  // EXCEPTO los que están dentro de certificates-section
+  .pgn-transition-replace-group {
+    border: 3px solid $emi-green !important;
+    border-radius: 29px !important;
+    overflow: hidden !important;
+    background: white !important;
+    margin-bottom: 2rem !important;
+    
+    // Headers verdes sin bordes redondeados
+    .editable-item-header {
+      margin: 0 !important;
+      
+      .edit-section-header,
+      label.edit-section-header {
+        background: $emi-green !important;
+        color: white !important;
+        padding: 1rem 1.5rem;
+        border-radius: 0 !important;
+        margin: 0 !important;
+        font-weight: 600;
+        text-transform: uppercase;
+        font-size: 1rem;
+        letter-spacing: 0.5px;
+        text-align: center;
+        width: 100%;
+        border: none !important;
+        cursor: pointer;
+        
+        &:hover {
+          background: darken($emi-green, 5%) !important;
+        }
+      }
+    }
+    
+    // Contenido con padding
+    > div:not(.editable-item-header) {
+      padding: 2rem !important;
+    }
+  }
+  
+  // Excluir específicamente los pgn-transition-replace-group dentro de certificates-section
+  .certificates-section .pgn-transition-replace-group {
+    border: none !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    margin-bottom: 0 !important;
+  }
+  
+  // Estilo específico para mensajes de alerta/edad
+  .alert {
+    width: 100% !important; // ocupar el ancho del wrapper que ya tiene max-width:1100px
+    max-width: 100% !important; // permitir shrink dentro del wrapper
+    box-sizing: border-box !important;
+    background: $emi-green !important;
+    border: none !important;
+    color: white !important;
+    border-radius: 29px !important;
+    padding: 0.75rem 1.5rem !important; // más padding vertical para multilinea
+    margin: 2rem 0 !important; // solo separación vertical; el wrapper centra horizontalmente
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important; // alinear texto a la izquierda
+    gap: 1rem !important;
+    flex-wrap: wrap !important; // permitir salto de línea
+    text-align: left !important;
+    min-height: 56px !important; // altura mínima
+    box-shadow: 0px 10px 6px #00000029 !important;
+    opacity: 1 !important;
+    overflow: visible !important; // permitir mostrar líneas envueltas
+
+    .alert-heading {
+      color: white !important;
+      font-weight: 700 !important;
+      margin: 0 !important;
+      display: inline-block !important;
+      line-height: 1.2 !important; // permitir multi-line en heading si hace falta
+      font-size: 1rem !important;
+      flex: none !important; // mantener tamaño del heading
+      padding-right: 0.25rem !important;
+    }
+
+    p {
+      color: white !important;
+      margin: 0 !important;
+      display: inline-block !important;
+      line-height: 1.3 !important; // comfortable line height para multilinea
+      font-size: 0.95rem !important;
+      flex: 1 1 auto !important; // dejar que el párrafo tome el espacio restante y haga wrap
+      min-width: 200px !important;
+    }
+
+    .alert-link {
+      color: $emi-light-gold !important;
+      text-decoration: underline !important;
+      font-weight: 700 !important;
+      line-height: 1.2 !important;
+      white-space: nowrap !important; // mantener el link en una sola línea
+      margin-left: 0.25rem !important;
+
+      &:hover {
+        color: white !important;
+      }
+    }
+
+    // Responsive adjustments
+    @include media-breakpoint-down(lg) {
+      width: 100% !important; // seguir llenando el wrapper en pantallas medianas
+      max-width: 100% !important;
+      padding: 0.6rem 1rem !important;
+      min-height: 48px !important;
+    }
+
+    @include media-breakpoint-down(md) {
+      width: 100% !important;
+      min-height: 44px !important;
+
+      .alert-heading,
+      p,
+      .alert-link {
+        line-height: 1.2 !important;
+        font-size: 0.9rem !important;
+      }
+
+      .alert-link { white-space: normal !important; }
+    }
+  }
+
+  // Contenedor wrapper de alertas - mismo ancho que otros contenedores
+  .pgn__alert-message-wrapper {
+    max-width: 1100px !important;
+    width: 100% !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+  }
+  
+  // OVERRIDE NUCLEAR PARA EL BADGE DE CERTIFICADOS - FORZAR REDONDEADO
+  .certificates-layout .editable-item-header.mb-2 h2.edit-section-header,
+  .certificates-layout .editable-item-header h2.edit-section-header,
+  .certificates-layout .editable-item-header .edit-section-header {
+    border-radius: 0px 0px 29px 29px !important;
+    -webkit-border-radius: 0px 0px 29px 29px !important;
+    -moz-border-radius: 0px 0px 29px 29px !important;
+    border-top-left-radius: 0px !important;
+    border-top-right-radius: 0px !important;
+    border-bottom-left-radius: 29px !important;
+    border-bottom-right-radius: 29px !important;
+    clip-path: none !important;
+    
+    // Forzar con pseudoelemento de máscara
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: inherit;
+      border-radius: 0px 0px 29px 29px !important;
+      z-index: -1;
+    }
+  }
+}
+
+// ==============================================
+// OVERRIDES FINALES - Máxima especificidad para Paragon
+// ==============================================
+
+// OVERRIDE ABSOLUTO PARA BADGE DE CERTIFICADOS - FUERA DE .profile-page
+html body .certificates-layout .editable-item-header h2.edit-section-header,
+body .certificates-layout .editable-item-header h2.edit-section-header,
+.certificates-layout .editable-item-header h2.edit-section-header,
+html body .certificates-layout .editable-item-header .edit-section-header,
+body .certificates-layout .editable-item-header .edit-section-header,
+.certificates-layout .editable-item-header .edit-section-header {
+  width: 560px !important;
+  height: 79px !important;
+  background: #235B4F !important;
+  color: #EDD899 !important;
+  overflow: hidden !important;
+  box-shadow: 0px 10px 6px #00000029 !important;
+  border: none !important;
+  
+  // Tipografía exacta según especificaciones
+  font-family: $emi-font-primary !important;
+  font-style: normal !important;
+  font-variant: normal !important;
+  font-weight: 900 !important;
+  font-size: 30px !important;
+  line-height: 41px !important;
+  letter-spacing: 0px !important;
+  opacity: 1 !important;
+  
+  // Usar clip-path para crear la forma redondeada perfecta
+  clip-path: polygon(
+    0% 0%, 
+    100% 0%, 
+    100% calc(100% - 29px), 
+    calc(100% - 29px) 100%, 
+    29px 100%, 
+    0% calc(100% - 29px)
+  ) !important;
+  
+  // Fallback con border-radius
+  border-radius: 0px 0px 29px 29px !important;
+  -webkit-border-radius: 0px 0px 29px 29px !important;
+  -moz-border-radius: 0px 0px 29px 29px !important;
+  border-top-left-radius: 0px !important;
+  border-top-right-radius: 0px !important;
+  border-bottom-left-radius: 29px !important;
+  border-bottom-right-radius: 29px !important;
+}
+
+// Banner override con máxima especificidad - eliminar azul completamente
+html body .profile-page .profile-page-bg-banner.bg-primary.d-md-block.p-relative,
+body .profile-page .profile-page-bg-banner.bg-primary.d-md-block,
+.profile-page .profile-page-bg-banner.bg-primary,
+.profile-page-bg-banner.bg-primary {
+  background: url('../assets/banner_fondo_dorado.jpg') center center/cover no-repeat !important;
+  background-color: transparent !important;
+  border: none !important;
+  
+  // Eliminar cualquier color de fondo de Bootstrap/Paragon
+  &::before, &::after {
+    display: none !important;
+  }
+}
+
+// Avatar override - fondo limpio
+html body .profile-page .profile-avatar.rounded-circle.bg-light,
+body .profile-page .profile-avatar.rounded-circle.bg-light,
+.profile-avatar.rounded-circle.bg-light {
+  background-color: transparent !important;
+  background: none !important;
+}
+
+// ==============================================
+// OVERRIDE FINAL ABSOLUTO DEL BANNER AZUL
+// ==============================================
+.profile-page-bg-banner {
+  background: transparent url('../assets/banner_fondo_dorado.jpg') center center/cover no-repeat !important;
+}
+
+.bg-primary.profile-page-bg-banner {
+  background: transparent url('../assets/banner_fondo_dorado.jpg') center center/cover no-repeat !important;
+}
+
+// ==============================================
+// ELIMINACIÓN COMPLETA DE DECORACIONES DEL AVATAR
+// ==============================================
+
+// Eliminar círculos, bordes y decoraciones del avatar completamente
+html body main .profile-page .profile-avatar-wrap.position-relative,
+html body .profile-page .profile-avatar-wrap.position-relative,
+body .profile-page .profile-avatar-wrap.position-relative,
+.profile-page .profile-avatar-wrap.position-relative,
+.profile-avatar-wrap.position-relative,
+.profile-avatar-wrap {
+  background: transparent !important;
+  border: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  
+  &::before, &::after {
+    display: none !important;
+    content: none !important;
+  }
+}
+
+// Eliminar cualquier container que cause círculos
+html body .profile-page .profile-avatar-menu-container,
+body .profile-page .profile-avatar-menu-container,
+.profile-page .profile-avatar-menu-container,
+.profile-avatar-menu-container {
+  display: none !important;
+  visibility: hidden !important;
+}
+// ==============================================
+// header
+// ==============================================
+
+
+.dropdown-menu-collapse {
+  width: 100vw;
+  position: absolute;
+  left: 0;
+}
+
+.learner-variant-header {
+  a {
+    // needed to make the link not resize the header
+    border-bottom: 2px solid transparent;
+  }
+  .course-link {
+    border-bottom: 2px solid !important;
+  }
+
+  .course-link:hover {
+    border-bottom: inherit !important;
+  }
+}
+
+.nav-small-menu {
+  > * {
+    justify-content: flex-start !important;
+
+    border-radius: 0 !important;
+    border-top: 1px solid #ffff !important;
+
+    &::after {
+      content: '\00BB';
+      padding-left: 10px;
+    }
+  }
+}
+
+.logo,
+.logo img {
+  height: 50px !important;
+  width: auto !important;
+}
+.site-header-desktop {
+  background-color: #5a122c !important;
+  height: 90px !important;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+}
+
+.nav-link,
+.nav-link:visited,
+.nav-link:active,
+.nav-link.active {
+  color: #fff !important;
+}
+
+.site-header-mobile {
+  background-color: #5a122c !important;
+  color: #fff !important;
+  min-height: 40px !important;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+// Ocultar el botón de cambio de tema en todos los dispositivos
+.theme-toggle-button,
+.mr-3:has(.theme-toggle-button) {
+  display: none !important;
+}
